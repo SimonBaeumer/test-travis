@@ -19,7 +19,7 @@ services:
 
 before_install:
   - echo "before install"
-  -
+
 jobs:
   include:
     - stage: security
