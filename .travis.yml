@@ -1,0 +1,38 @@
+language: go
+
+env:
+  - GO111MODULE=on
+
+stages:
+  - security
+  - test
+  - deploy
+
+go:
+  - 1.11.x
+
+sudo: required
+dist: trusty
+
+services:
+  - docker
+
+before_install:
+  - echo "before install"
+  -
+jobs:
+  include:
+    - stage: security
+      name: "Security checks"
+      script: echo "security checks"
+
+    - stage: test
+      name: "Go lint"
+      script: echo "linting"
+
+    - name: "Run unit tests"
+      script: echo "unit testing"
+
+    - name: "Another job"
+      script: echo "another job"
+
