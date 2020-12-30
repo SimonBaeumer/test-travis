@@ -16,9 +16,9 @@ jobs:
 
   test-macos:
     xcode: 11.7.0
-  steps:
-    - checkout
-    - go test ./...
+    steps:
+      - checkout
+      - go test ./...
 
   test-windows:
     executor:
