@@ -98,6 +98,6 @@ workflows:
         - integration-windows
         filters:
           tags:
-            only: /^v.*/
+            only: /.*/
           branches:
             ignore: /.*/
