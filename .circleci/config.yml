@@ -15,7 +15,8 @@ jobs:
         command: go test ./...
 
   test-macos:
-    xcode: 11.7.0
+    macos:
+      xcode: 11.7.0
     steps:
       - checkout
       - go test ./...
