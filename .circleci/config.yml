@@ -55,5 +55,6 @@ workflows:
     - test
     - test-windows
   integration-test-workflow:
-  - integration
-  - integraiton-windows
+    jobs:
+    - integration
+    - integraiton-windows
