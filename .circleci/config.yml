@@ -100,4 +100,5 @@ workflows:
         - integration-windows
         filters:
           tags:
-            only: /^v.*/
+            only:
+            - /^v.*/
