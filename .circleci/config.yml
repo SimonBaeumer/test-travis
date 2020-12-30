@@ -32,8 +32,7 @@ jobs:
     - run: go test ./...
 
   integration:
-    docker:
-      - image: circleci/golang:1.15
+    machine: true
     steps:
       - checkout
       - setup_remote_docker:
