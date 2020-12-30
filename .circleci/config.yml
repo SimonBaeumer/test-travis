@@ -7,6 +7,8 @@ jobs:
     docker:
       - image: circleci/golang:1.15
     steps:
+      - checkout
+      - go vet ./...
       - run: $(go fmt ./... | wc -l) || exit 1
 
   test:
