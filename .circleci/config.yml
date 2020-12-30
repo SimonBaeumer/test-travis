@@ -3,15 +3,20 @@ orbs:
   win: circleci/windows@2.2.0
 
 jobs:
+  style:
+    docker:
+      - image: circleci/golang:1.15
+    steps:
+      - run: go vet ./...
+      - run: $(go fmt ./... | wc -l) || exit 1
+
   test:
     docker:
     - image: circleci/golang:1.15
 
     steps:
     - checkout
-    - run:
-        name: Run unit tests
-        command: go test ./...
+    - run: go test ./...
 
 # another support plan necessary
 # test-macos:
@@ -49,13 +54,33 @@ jobs:
     - run: choco install make
     - run: docker run hello-world
 
+  release:
+    docker:
+      - image: circleci/golang:1.15
+    steps:
+      - checkout
+      - run: go get github.com/github-release/github-release
+
 workflows:
   version: 2
   unit-test-workflow:
     jobs:
+    - style
     - test
     - test-windows
-  integration-test-workflow:
-    jobs:
     - integration
     - integration-windows
+    - release
+      requires:
+      - style
+      - test
+      - test-windows
+      - integration
+      - integration-windows
+      filters:
+        branches:
+          only:
+            # - main
+            - master
+        tags:
+          only: /^v.*/
