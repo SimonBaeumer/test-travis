@@ -105,9 +105,9 @@ workflows:
         requires:
         - style
         - test
-        - test-windows
+#        - test-windows
         - integration
-        - integration-windows
+#        - integration-windows
         filters:
           tags:
             only: /.*/
