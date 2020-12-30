@@ -13,7 +13,7 @@ jobs:
 
   test:
     environment:
-      #CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID
+      CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
     docker:
     - image: circleci/golang:1.15
 
@@ -27,9 +27,9 @@ jobs:
     - run:
         name: Run unit tests
         command: |
-          #./test-reporter before-build
+          ./test-reporter before-build
           go test ./...
-          #./test-reporter after-build -t gocov --exit-code $?
+          ./test-reporter after-build -t gocov --exit-code $?
 
 # another support plan necessary
 # test-macos:
@@ -69,7 +69,7 @@ jobs:
 
   deploy:
     environment:
-      GITHUB_TOKEN: "test"
+      GITHUB_TOKEN: $GITHUB_TOKEN
       GIT_RELEASE_TAG: << pipeline.git.tag >>
     docker:
       - image: circleci/golang:1.15
