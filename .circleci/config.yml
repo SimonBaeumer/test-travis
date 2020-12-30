@@ -31,9 +31,28 @@ jobs:
     - run: choco install golang --version 1.15
     - run: go test ./...
 
+  integration:
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run: docker run hello-world
+
+  integration-windows:
+    executor:
+      name: win/default
+      shell: powershell.exe
+    steps:
+    - checkout
+    - run: choco install make
+    - run: docker run hello-world
+
 workflows:
   version: 2
   unit-test-workflow:
     jobs:
     - test
     - test-windows
+  integration-test-workflow:
+    - integration
+    - integraiton-windows
