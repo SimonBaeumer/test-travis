@@ -71,12 +71,12 @@ workflows:
     - integration
     - integration-windows
     - release
-      requires:
-      - style
-      - test
-      - test-windows
-      - integration
-      - integration-windows
+        requires:
+        - style
+        - test
+        - test-windows
+        - integration
+        - integration-windows
       filters:
         branches:
           only:
