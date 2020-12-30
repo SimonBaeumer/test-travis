@@ -90,12 +90,6 @@ workflows:
     - integration
     - integration-windows
     - deploy:
-        requires:
-        - style
-        - test
-        - test-windows
-        - integration
-        - integration-windows
         filters:
           tags:
             only: /.*/
