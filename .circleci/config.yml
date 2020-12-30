@@ -28,7 +28,7 @@ jobs:
         name: Run unit tests
         command: |
           ./test-reporter before-build
-          go test ./...
+          go test -cover ./...
           ./test-reporter after-build -t gocov --exit-code $?
 
 # another support plan necessary
