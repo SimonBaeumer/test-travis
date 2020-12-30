@@ -12,8 +12,6 @@ jobs:
       - run: if [ $(go fmt ./... | wc -l) -eq 0  ]; then exit 0; else exit 0; fi
 
   test:
-    environment:
-      CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
     docker:
     - image: circleci/golang:1.15
 
