@@ -111,8 +111,9 @@ workflows:
             filters:
               tags:
                 only: /.*/
-        filters:
-          tags:
-            only: /.*/
-          branches:
-            ignore: /.*/
+        - deploy:
+            filters:
+              tags:
+                only: /.*/
+              branches:
+                ignore: /.*/
