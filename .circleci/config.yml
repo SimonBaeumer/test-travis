@@ -32,6 +32,8 @@ jobs:
     - run: go test ./...
 
   integration:
+    docker:
+      - image: circleci/golang:1.15
     steps:
       - checkout
       - setup_remote_docker:
@@ -54,5 +56,5 @@ workflows:
     - test
     - test-windows
   integration-test-workflow:
-    - integration
-    - integraiton-windows
+  - integration
+  - integraiton-windows
