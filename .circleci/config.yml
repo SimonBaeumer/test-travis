@@ -12,12 +12,24 @@ jobs:
       - run: if [ $(go fmt ./... | wc -l) -eq 0  ]; then exit 0; else exit 0; fi
 
   test:
+    environment:
+      #CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID
     docker:
     - image: circleci/golang:1.15
 
     steps:
     - checkout
-    - run: go test ./...
+    - run:
+        name: Install test reporter
+        command: |
+          curl https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-0.6.3-linux-amd64 --output test-reporter
+          chmod +x test-reporter
+    - run:
+      name: Run unit tests
+      command: |
+        #./test-reporter before-build
+        go test ./...
+        #./test-reporter after-build -t gocov --exit-code $?
 
 # another support plan necessary
 # test-macos:
@@ -56,11 +68,19 @@ jobs:
     - run: docker run hello-world
 
   release:
+    environment:
+      GITHUB_TOKEN: "test"
+      GIT_RELEASE_TAG: << pipeline.git.tag >>
     docker:
       - image: circleci/golang:1.15
     steps:
       - checkout
-      - run: go get github.com/github-release/github-release
+      - run: go get -u github.com/tcnksm/ghr
+      - run: go build -o release/math-linux-amd64
+      - run:
+          name: Publish release
+          command: ghr $GIT_RELEASE_TAG release
+
 
 workflows:
   version: 2.1
@@ -79,9 +99,5 @@ workflows:
         - integration
         - integration-windows
         filters:
-          branches:
-            only:
-              # - main
-              - master
           tags:
             only: /^v.*/
