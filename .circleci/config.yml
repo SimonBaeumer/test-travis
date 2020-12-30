@@ -95,12 +95,12 @@ workflows:
         <<: *runOnAllTagsAndBranches
     - test:
         <<: *runOnAllTagsAndBranches
-    - test-windows:
-        <<: *runOnAllTagsAndBranches
+#    - test-windows:
+#        <<: *runOnAllTagsAndBranches
     - integration:
         <<: *runOnAllTagsAndBranches
-    - integration-windows:
-        <<: *runOnAllTagsAndBranches
+#    - integration-windows:
+#        <<: *runOnAllTagsAndBranches
     - deploy:
         requires:
         - style
