@@ -62,8 +62,8 @@ jobs:
       - run: go get github.com/github-release/github-release
 
 workflows:
-  version: 2
-  unit-test-workflow:
+  version: 2.1
+  workflow:
     jobs:
     - style
     - test
@@ -77,10 +77,10 @@ workflows:
         - test-windows
         - integration
         - integration-windows
-      filters:
-        branches:
-          only:
-            # - main
-            - master
-        tags:
-          only: /^v.*/
+        filters:
+          branches:
+            only:
+              # - main
+              - master
+          tags:
+            only: /^v.*/
