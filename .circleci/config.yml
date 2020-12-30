@@ -1,6 +1,5 @@
 version: 2.1
 orbs:
-  mac-permissions: circleci/macos
   win: circleci/windows@2.2.0
 
 jobs:
