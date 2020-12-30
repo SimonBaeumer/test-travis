@@ -36,5 +36,4 @@ workflows:
   unit-test-workflow:
     jobs:
     - test
-    - test-macos
     - test-windows
