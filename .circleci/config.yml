@@ -1,4 +1,8 @@
 version: 2
+orbs:
+  mac-permissions: circleci/macos
+  win: circleci/windows@2.2.0
+
 jobs:
   test:
     docker:
@@ -10,8 +14,23 @@ jobs:
         name: Run unit tests
         command: go test ./...
 
+  test-macos:
+    xcode: 11.7.0
+  steps:
+    - checkout
+    - go test ./...
+
+  test-windows:
+    executor:
+      name: win/default
+      shell: powershell.exe
+    steps:
+    - checkout
+    - run: go test./...
+
 workflows:
   version: 2
-  build-workflow:
+  unit-test-workflow:
     jobs:
       - test
+      - test-macos
