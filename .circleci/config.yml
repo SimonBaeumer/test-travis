@@ -13,12 +13,13 @@ jobs:
         name: Run unit tests
         command: go test ./...
 
-  test-macos:
-    macos:
-      xcode: 11.7.0
-    steps:
-    - checkout
-    - run: go test ./...
+# another support plan necessary
+# test-macos:
+#   macos:
+#     xcode: 11.7.0
+#   steps:
+#   - checkout
+#   - run: go test ./...
 
   test-windows:
     executor:
@@ -26,6 +27,8 @@ jobs:
       shell: powershell.exe
     steps:
     - checkout
+    - run: choco install make
+    - run: choco install go
     - run: go test./...
 
 workflows:
