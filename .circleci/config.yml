@@ -91,7 +91,7 @@ workflows:
     - test-windows
     - integration
     - integration-windows
-    - release:
+    - deploy:
         requires:
         - style
         - test
