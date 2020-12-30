@@ -28,7 +28,7 @@ jobs:
     steps:
     - checkout
     - run: choco install make
-    - run: choco install go
+    - run: choco install golang --version 1.15
     - run: go test./...
 
 workflows:
