@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 orbs:
   mac-permissions: circleci/macos
   win: circleci/windows@2.2.0
@@ -33,6 +33,6 @@ workflows:
   version: 2
   unit-test-workflow:
     jobs:
-      - test
-      - test-macos
-      - test-windows
+    - test
+    - test-macos
+    - test-windows
