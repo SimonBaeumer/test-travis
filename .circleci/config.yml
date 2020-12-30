@@ -84,36 +84,45 @@ workflows:
   version: 2.1
   workflow:
     jobs:
-    - style
-    - test
-    - test-windows
-    - integration
-    - integration-windows
+    - style:
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            only: /.*/
+    - test:
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            only: /.*/
+    - test-windows:
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            only: /.*/
+    - integration:
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            only: /.*/
+    - integration-windows:
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            only: /.*/
     - deploy:
         requires:
-        - style:
-            filters:
-              tags:
-                only: /.*/
-        - test:
-            filters:
-              tags:
-                only: /.*/
-        - test-windows:
-            filters:
-              tags:
-                only: /.*/
-        - integration:
-            filters:
-              tags:
-                only: /.*/
-        - integration-windows:
-            filters:
-              tags:
-                only: /.*/
-        - deploy:
-            filters:
-              tags:
-                only: /.*/
-              branches:
-                ignore: /.*/
+        - style
+        - test
+        - test-windows
+        - integration
+        - integration-windows
+        filters:
+          tags:
+            only: /.*/
+          branches:
+            ignore: /.*/
