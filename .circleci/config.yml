@@ -67,7 +67,7 @@ jobs:
     - run: choco install make
     - run: docker run hello-world
 
-  depoy:
+  deploy:
     environment:
       GITHUB_TOKEN: "test"
       GIT_RELEASE_TAG: << pipeline.git.tag >>
